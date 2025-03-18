@@ -11,6 +11,6 @@ import org.mapstruct.Mapping;
 public interface ICustomerMapper {
     Customer toEntity(CustomerRequestDTO customerRequestDTO);
     Customer toEntity(CustomerIdRequestDTO customerIdRequestDTO);
-    @Mapping(source = "id", target = "customerId")
+    @Mapping(source = "id", target = "idCustomer")
     CustomerResponseDTO toDTO(Customer customer);
 }

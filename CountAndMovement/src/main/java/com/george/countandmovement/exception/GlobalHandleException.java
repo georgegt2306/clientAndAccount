@@ -64,7 +64,7 @@ public class GlobalHandleException {
     }
 
     @ExceptionHandler(AccountAlreadyExistsException.class)
-    public ResponseEntity<Map<String, Object>> handleCustomerAlreadyExistsException(AccountAlreadyExistsException ex) {
+    public ResponseEntity<Map<String, Object>> handleAccountAlreadyExistsException(AccountAlreadyExistsException ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.CONFLICT.value());
         response.put("message", ex.getMessage());

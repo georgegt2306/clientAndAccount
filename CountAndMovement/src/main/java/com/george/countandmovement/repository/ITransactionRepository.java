@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface ITransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findByAccount_AccountIdAndDateBetween(Integer accountId, LocalDateTime startDate, LocalDateTime endDate);
+    List<Transaction> findByDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
 }

@@ -1,5 +1,6 @@
 package com.george.countandmovement.service;
 
+import com.george.countandmovement.model.dto.TransactionReportDTO;
 import com.george.countandmovement.model.dto.TransactionRequestDTO;
 import com.george.countandmovement.model.dto.TransactionResponseDTO;
 import com.george.countandmovement.model.entity.Transaction;
@@ -12,5 +13,6 @@ import java.util.List;
 public interface ITransactionService {
 
     public TransactionResponseDTO saveTransaction(TransactionRequestDTO transactionRequestDTO);
-    public List<TransactionResponseDTO> findByAccount_AccountIdAndDateBetween(Integer accountId, LocalDateTime startDate, LocalDateTime endDate);
+    public TransactionReportDTO  findByCustomerAndDateRange(Integer customerId, LocalDateTime startDate, LocalDateTime endDate);
+    public TransactionReportDTO  findByDateRange(LocalDateTime startDate, LocalDateTime endDate);
 }

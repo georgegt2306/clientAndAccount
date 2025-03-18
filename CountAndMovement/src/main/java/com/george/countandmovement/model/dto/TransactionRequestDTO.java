@@ -9,8 +9,9 @@ import java.util.Date;
 public class TransactionRequestDTO {
     private Long id;
     private Date date;
-    private String MovementType;
+    private String movementType;
     private BigDecimal value;
     private BigDecimal saldo;
+    private Long account;
 
 }

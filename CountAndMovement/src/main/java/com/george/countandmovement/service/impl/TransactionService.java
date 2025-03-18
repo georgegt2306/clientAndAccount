@@ -1,6 +1,7 @@
 package com.george.countandmovement.service.impl;
 
 import com.george.countandmovement.mapper.ITransactionMapper;
+import com.george.countandmovement.model.dto.TransactionReportDTO;
 import com.george.countandmovement.model.dto.TransactionRequestDTO;
 import com.george.countandmovement.model.dto.TransactionResponseDTO;
 import com.george.countandmovement.model.entity.Account;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionService implements ITransactionService {
@@ -32,7 +34,7 @@ public class TransactionService implements ITransactionService {
 
     @Override
     public TransactionResponseDTO saveTransaction(TransactionRequestDTO transactionRequestDTO) {
-        Account account = obtenerCuenta(transactionRequestDTO.getId());
+        Account account = obtenerCuenta(transactionRequestDTO.getAccount());
 
         validarFondos(account.getInitialBalance(), transactionRequestDTO.getValue());
 
@@ -44,11 +46,41 @@ public class TransactionService implements ITransactionService {
         return transactionMapper.toDto(savedTransaction);
     }
 
-    @Override
-    public List<TransactionResponseDTO> findByAccount_AccountIdAndDateBetween(Integer accountId, LocalDateTime startDate, LocalDateTime endDate) {
-        return transactionRepository.findByAccount_AccountIdAndDateBetween(accountId, startDate, endDate)
-                .stream().map(transaction -> transactionMapper.toDto(transaction))
-                .toList();
+    public TransactionReportDTO findByCustomerAndDateRange(Integer customerId, LocalDateTime startDate, LocalDateTime endDate) {
+        List<Transaction> transactions = transactionRepository.findByAccount_AccountIdAndDateBetween(customerId, startDate, endDate);
+
+        List<TransactionResponseDTO> transactionDTOs = transactions.stream()
+                .map(transactionMapper::toDto)
+                .collect(Collectors.toList());
+
+        BigDecimal totalBalance = transactionDTOs.stream()
+                .map(TransactionResponseDTO::getSaldo)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        TransactionReportDTO report = new TransactionReportDTO();
+        report.setCustomerId(customerId);
+        report.setTransactions(transactionDTOs);
+        report.setTotalBalance(totalBalance);
+
+        return report;
+    }
+
+    public TransactionReportDTO findByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Transaction> transactions = transactionRepository.findByDateBetween(startDate, endDate);
+
+        List<TransactionResponseDTO> transactionDTOs = transactions.stream()
+                .map(transactionMapper::toDto)
+                .collect(Collectors.toList());
+
+        BigDecimal totalBalance = transactionDTOs.stream()
+                .map(TransactionResponseDTO::getSaldo)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        TransactionReportDTO report = new TransactionReportDTO();
+        report.setTransactions(transactionDTOs);
+        report.setTotalBalance(totalBalance);
+
+        return report;
     }
 
     private Account obtenerCuenta(Long accountId) {
