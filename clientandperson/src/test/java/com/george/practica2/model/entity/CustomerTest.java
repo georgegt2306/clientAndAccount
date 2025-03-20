@@ -16,7 +16,6 @@ public class CustomerTest {
 
     @Test
     public void testSaveCustomer() {
-        // Crear un nuevo cliente
         Customer customer = new Customer();
         customer.setName("John Doe");
         customer.setGender("Male");
@@ -27,12 +26,11 @@ public class CustomerTest {
         customer.setPassword("securepassword");
         customer.setStatus(true);
 
-        // Guardar el cliente en la base de datos
         Customer savedCustomer = customerRepository.save(customer);
 
-        // Verificar que el cliente fue guardado correctamente
+
         assertThat(savedCustomer).isNotNull();
-        assertThat(savedCustomer.getId()).isNotNull(); // Asegurarse de que se asignó un ID
-        assertThat(savedCustomer.getName()).isEqualTo("John Doe"); // Verificar el nombre
+        assertThat(savedCustomer.getId()).isNotNull();
+        assertThat(savedCustomer.getName()).isEqualTo("John Doe");
     }
 }
