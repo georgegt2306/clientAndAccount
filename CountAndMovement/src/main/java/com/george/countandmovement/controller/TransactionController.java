@@ -39,8 +39,6 @@ public class TransactionController {
         LocalDateTime startDate = LocalDate.parse(dates[0]).atStartOfDay();
         LocalDateTime endDate = LocalDate.parse(dates[1]).atTime(23, 59, 59, 999999999);
 
-
-        // Llamada al servicio para obtener el reporte completo
         TransactionReportDTO report;
 
         if (customerId != null) {
