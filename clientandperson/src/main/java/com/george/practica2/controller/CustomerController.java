@@ -1,5 +1,6 @@
 package com.george.practica2.controller;
 
+import com.george.practica2.RabbitMQSender;
 import com.george.practica2.model.dto.CustomerIdRequestDTO;
 import com.george.practica2.model.dto.CustomerRequestDTO;
 import com.george.practica2.model.dto.CustomerResponseDTO;
@@ -15,9 +16,11 @@ import java.util.List;
 public class CustomerController {
 
     private final ICustomerService customerService;
+    private final RabbitMQSender rabbitMQSender;
 
-    public CustomerController(ICustomerService customerService) {
+    public CustomerController(ICustomerService customerService, RabbitMQSender rabbitMQSender) {
         this.customerService = customerService;
+        this.rabbitMQSender = rabbitMQSender;
     }
 
     @GetMapping(value = "/{id}")
@@ -32,7 +35,9 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<CustomerResponseDTO> save(@Valid @RequestBody CustomerRequestDTO customerRequestDTO) {
-        return ResponseEntity.ok(customerService.save(customerRequestDTO));
+        CustomerResponseDTO savedCustomer = customerService.save(customerRequestDTO);
+        rabbitMQSender.sendCustomer(savedCustomer);
+        return ResponseEntity.ok(savedCustomer);
     }
 
     @PutMapping

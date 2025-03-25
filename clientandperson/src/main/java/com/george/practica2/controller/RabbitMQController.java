@@ -17,9 +17,9 @@ public class RabbitMQController {
     }
 
     // Endpoint para probar el envío de mensajes
-    @GetMapping("/send")
+    /*@GetMapping("/send")
     public String sendMessage() {
         sender.sendMessage("Hola desde Spring Boot a RabbitMQ!");
         return "Mensaje enviado a RabbitMQ!";
-    }
+    }*/
 }
