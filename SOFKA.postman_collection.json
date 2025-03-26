@@ -1,0 +1,559 @@
+{
+	"info": {
+		"_postman_id": "19b0497b-2433-41e9-87f9-088ed4f3802c",
+		"name": "SOFKA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10904129"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Create Jose Lema",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"1234\",\r\n    \"status\": true,\r\n    \"name\": \"Jose Lema\",\r\n    \"gender\": \"M\",\r\n    \"age\": 30,\r\n    \"identification\": \"0999999999\",\r\n    \"address\": \"Otavalo sn y principal\",\r\n    \"phone\": \"0999999999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{metodo}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Marianela Montalvo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"5678\",\r\n    \"status\": true,\r\n    \"name\": \"Marianela Montalvo\",\r\n    \"gender\": \"M\",\r\n    \"age\": 30,\r\n    \"identification\": \"0950978288\",\r\n    \"address\": \"Amazonas y NNUU\",\r\n    \"phone\": \"0950978288\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{metodo}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Juan Osorio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"1245\",\r\n    \"status\": true,\r\n    \"name\": \"Juan Osorio\",\r\n    \"gender\": \"M\",\r\n    \"age\": 30,\r\n    \"identification\": \"098874587\",\r\n    \"address\": \"13 junio y Equinoccial \",\r\n    \"phone\": \"098874587\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{metodo}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombreCliente\": \"Juan Pérez\",\r\n  \"generoCliente\": \"Masculino\",\r\n  \"edadCliente\": 30,\r\n  \"identificacionCliente\": \"123456789012\",\r\n  \"direccionCliente\": \"Calle Ficticia 123, Quito, Ecuador\",\r\n  \"telefonoCliente\": \"+593123456789\",\r\n  \"clienteidCliente\": 1,\r\n  \"contrasenaCliente\": \"contrasenaSegura123\",\r\n  \"estadoCliente\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{metodo}}/1",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Create Account Jose Lema",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"accountNumber\": \"478758\",\r\n  \"accountType\": \"SAVINGS\",\r\n  \"initialBalance\": 2000,\r\n  \"status\": true,\r\n  \"customerId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo2}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Current Account Marianela",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"accountNumber\": \"225487\",\r\n  \"accountType\": \"CURRENT\",\r\n  \"initialBalance\": 100,\r\n  \"status\": true,\r\n  \"customerId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto}}/api/v1/{{metodo}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Savings Account Juan Osorio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"accountNumber\": \"495878\",\r\n  \"accountType\": \"SAVINGS\",\r\n  \"initialBalance\": 0,\r\n  \"status\": true,\r\n  \"customerId\": 3\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo2}}s",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo2}}s"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Savings Account Marianela",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"accountNumber\": \"496825\",\r\n  \"accountType\": \"SAVINGS\",\r\n  \"initialBalance\": 540,\r\n  \"status\": true,\r\n  \"customerId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo2}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Savings Account Marianela Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"accountNumber\": \"585545\",\r\n  \"accountType\": \"CURRENT\",\r\n  \"initialBalance\": 1000,\r\n  \"status\": true,\r\n  \"customerId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo2}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombreCliente\": \"Juan Pérez\",\r\n  \"generoCliente\": \"Masculino\",\r\n  \"edadCliente\": 30,\r\n  \"identificacionCliente\": \"123456789012\",\r\n  \"direccionCliente\": \"Calle Ficticia 123, Quito, Ecuador\",\r\n  \"telefonoCliente\": \"+593123456789\",\r\n  \"clienteidCliente\": 1,\r\n  \"contrasenaCliente\": \"contrasenaSegura123\",\r\n  \"estadoCliente\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo2}}/1",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo2}}",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo2}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Create Transaction for 478758",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-03-18T12:00:00Z\",\r\n  \"movementType\": \"DEPOSIT\",\r\n  \"value\": 575,\r\n   \"accountNumber\": \"478758\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo3}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction for 225487",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-03-18T13:00:00Z\",\r\n  \"movementType\": \"DEPOSIT\",\r\n  \"value\": 600,\r\n  \"accountNumber\": \"225487\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo3}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction for 495878",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-03-18T13:00:00Z\",\r\n  \"movementType\": \"DEPOSIT\",\r\n  \"value\": 150,\r\n  \"accountNumber\": \"495878\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo3}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction for 496825",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2025-03-18T14:00:00Z\",\r\n  \"movementType\": \"DEPOSIT\",\r\n  \"value\": 540,\r\n  \"accountNumber\": \"496825\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{servidor}}:{{puerto2}}/api/v1/{{metodo3}}",
+							"protocol": "http",
+							"host": [
+								"{{servidor}}"
+							],
+							"port": "{{puerto2}}",
+							"path": [
+								"api",
+								"v1",
+								"{{metodo3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/transactions/reports?date=2025-02-01,2025-03-20&customer=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"transactions",
+								"reports"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-02-01,2025-03-20"
+								},
+								{
+									"key": "customer",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "servidor",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "puerto",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "metodo",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "puerto2",
+			"value": "8084",
+			"type": "default"
+		},
+		{
+			"key": "metodo2",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "metodo3",
+			"value": "transactions",
+			"type": "default"
+		}
+	]
+}

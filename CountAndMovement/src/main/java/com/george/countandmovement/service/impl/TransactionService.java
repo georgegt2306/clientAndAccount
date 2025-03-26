@@ -9,12 +9,15 @@ import com.george.countandmovement.model.entity.Transaction;
 import com.george.countandmovement.repository.IAccountRepository;
 import com.george.countandmovement.repository.ITransactionRepository;
 import com.george.countandmovement.service.ITransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +27,7 @@ public class TransactionService implements ITransactionService {
     private final ITransactionMapper transactionMapper;
     private final IAccountRepository accountRepository;
 
+    @Autowired
     public TransactionService(ITransactionRepository transactionRepository,
                               ITransactionMapper transactionMapper,
                               IAccountRepository accountRepository) {
@@ -34,11 +38,11 @@ public class TransactionService implements ITransactionService {
 
     @Override
     public TransactionResponseDTO saveTransaction(TransactionRequestDTO transactionRequestDTO) {
-        Account account = obtenerCuenta(transactionRequestDTO.getAccount());
+        Account account = obtenerCuenta(transactionRequestDTO.getAccountNumber());
 
-        validarFondos(account.getInitialBalance(), transactionRequestDTO.getValue());
+        validarFondos(account.getInitialBalance(), transactionRequestDTO.getValue(), transactionRequestDTO.getMovementType());
 
-        Transaction transaction = construirTransaccion(account, transactionRequestDTO.getValue());
+        Transaction transaction = construirTransaccion(account, transactionRequestDTO.getValue(), transactionRequestDTO.getMovementType());
         Transaction savedTransaction = transactionRepository.save(transaction);
 
         actualizarSaldoCuenta(account, transaction.getSaldo());
@@ -82,20 +86,21 @@ public class TransactionService implements ITransactionService {
 
         return report;
     }
-
-    private Account obtenerCuenta(Long accountId) {
-        return accountRepository.findById(accountId)
-                .orElseThrow(() -> new RuntimeException("No se encontró la cuenta con el ID proporcionado."));
+    public Account obtenerCuenta(String accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber)
+                .orElseThrow(() -> new RuntimeException("No se encontró la cuenta con el número proporcionado."));
     }
 
-    private void validarFondos(BigDecimal saldoActual, BigDecimal montoTransaccion) {
-        if (saldoActual.add(montoTransaccion).signum() == -1) {
-            throw new IllegalArgumentException("Fondos insuficientes para procesar la transacción.");
+    private void validarFondos(BigDecimal saldoActual, BigDecimal montoTransaccion, String movementType) {
+        if ("WITHDRAW".equalsIgnoreCase(movementType) && saldoActual.compareTo(montoTransaccion) < 0) {
+            throw new IllegalArgumentException("Fondos insuficientes para procesar el retiro.");
         }
     }
 
-    private Transaction construirTransaccion(Account account, BigDecimal transactionAmount) {
-        BigDecimal updatedBalance = account.getInitialBalance().add(transactionAmount);
+    private Transaction construirTransaccion(Account account, BigDecimal transactionAmount, String movementType) {
+        BigDecimal updatedBalance = "WITHDRAW".equalsIgnoreCase(movementType)
+                ? account.getInitialBalance().subtract(transactionAmount)
+                : account.getInitialBalance().add(transactionAmount);
 
         Transaction transaction = new Transaction();
         transaction.setAccount(account);

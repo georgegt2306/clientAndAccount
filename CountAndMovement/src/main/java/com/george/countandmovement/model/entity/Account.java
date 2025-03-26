@@ -24,7 +24,7 @@ public class Account {
     private Long accountId;
 
     @NotBlank
-    @Size(min = 10, max = 20)
+    @Size(min = 6, max = 20)
     @Column(name = "account_number", nullable = false, unique = true, length = 20)
     private String accountNumber;
 

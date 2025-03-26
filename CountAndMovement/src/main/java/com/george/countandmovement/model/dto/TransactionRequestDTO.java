@@ -12,6 +12,6 @@ public class TransactionRequestDTO {
     private String movementType;
     private BigDecimal value;
     private BigDecimal saldo;
-    private Long account;
+    private String accountNumber;
 
 }

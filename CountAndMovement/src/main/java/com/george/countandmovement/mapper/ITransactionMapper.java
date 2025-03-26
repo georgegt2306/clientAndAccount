@@ -5,7 +5,9 @@ import com.george.countandmovement.model.dto.TransactionResponseDTO;
 import com.george.countandmovement.model.entity.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.context.annotation.Primary;
 
+@Primary
 @Mapper(componentModel="spring")
 public interface ITransactionMapper {
 
@@ -15,6 +17,6 @@ public interface ITransactionMapper {
    @Mapping(source = "account.accountNumber", target = "accountNumber")
    TransactionResponseDTO toDto(Transaction transaction);
 
-   @Mapping(source = "account", target = "account.accountId")
+   @Mapping(source = "accountNumber", target = "account.accountId")
    Transaction toEntity(TransactionRequestDTO transaction);
 }
